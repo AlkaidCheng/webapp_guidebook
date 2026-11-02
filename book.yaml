@@ -1,0 +1,33 @@
+title: Web App Guidebook
+subtitle: Concepts and procedures for building and hosting web applications
+kicker: Notes and procedures
+author: Alkaid Cheng
+url: https://alkaidcheng.github.io/webapp_guidebook/
+repo: https://github.com/AlkaidCheng/webapp_guidebook
+
+# Parts are categories; chapters are the topics inside them. Chapters are
+# numbered continuously through the book, parts with Roman numerals.
+# Each part directory needs an index.md; each chapter is one Markdown file
+# with a YAML front matter block (title, summary, optional status, references).
+parts:
+  - dir: foundations
+    title: Foundations
+    chapters:
+      - anatomy.md
+      - domains.md
+      - access.md
+      - databases.md
+      - services.md
+      - storage.md
+      - email.md
+      - releases.md
+  - dir: cloudbase
+    title: Tencent CloudBase
+    chapters:
+      - overview.md
+      - environment.md
+      - cam.md
+      - database.md
+      - cloud-run.md
+      - storage-email.md
+      - operations.md

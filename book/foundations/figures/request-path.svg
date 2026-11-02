@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 430">
+  <defs>
+    <marker id="rp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="var(--ink-2, #4a463f)"/>
+    </marker>
+    <marker id="rp-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="var(--accent-ink, #6a2522)"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: none; stroke: var(--ink-2, #4a463f); stroke-width: 1.3; }
+    .ext { fill: none; stroke: var(--ink-3, #7a756b); stroke-width: 1.3; stroke-dasharray: 4 4; }
+    .zone { fill: none; stroke: var(--ink-3, #7a756b); stroke-width: 1; stroke-dasharray: 2 4; }
+    .name { fill: var(--ink, #1d1b17); font-size: 12.5px; font-weight: 600; text-anchor: middle; }
+    .cls { fill: var(--ink-3, #7a756b); font-size: 9.5px; font-style: italic; text-anchor: middle; }
+    .arr { fill: var(--accent-ink, #6a2522); font-size: 9.5px; font-weight: 600; text-anchor: middle; letter-spacing: 0.4px; }
+    .lane { fill: var(--ink-3, #7a756b); font-size: 10px; letter-spacing: 1.6px; text-anchor: middle; }
+    .flow { stroke: var(--ink-2, #4a463f); stroke-width: 1.2; fill: none; marker-end: url(#rp-arrow); }
+    .lookup { stroke: var(--ink-3, #7a756b); stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; marker-end: url(#rp-arrow); }
+    .direct { stroke: var(--accent-ink, #6a2522); stroke-width: 1.3; fill: none; stroke-dasharray: 6 4; marker-start: url(#rp-arrow-accent); marker-end: url(#rp-arrow-accent); }
+    .start { text-anchor: start; }
+    .end { text-anchor: end; }
+  </style>
+
+  <!-- lane labels -->
+  <text class="lane" x="85" y="24">CLIENT</text>
+  <text class="lane" x="280" y="24">PUBLIC</text>
+  <text class="lane" x="520" y="24">INTERNAL</text>
+  <text class="lane" x="737" y="24">BACKING SERVICES</text>
+
+  <!-- browser -->
+  <rect class="box" x="20" y="190" width="130" height="56" rx="4"/>
+  <text class="name" x="85" y="214">Browser</text>
+  <text class="cls" x="85" y="230">pages, fetch /api, files</text>
+
+  <!-- DNS lookup -->
+  <rect class="ext" x="210" y="50" width="140" height="50" rx="4"/>
+  <text class="name" x="280" y="71">DNS</text>
+  <text class="cls" x="280" y="87">domain name → address</text>
+  <path class="lookup" d="M85 190 V75 H208"/>
+  <text class="arr start" x="92" y="140">name lookup</text>
+
+  <!-- web service -->
+  <rect class="box" x="210" y="190" width="140" height="56" rx="4"/>
+  <text class="name" x="280" y="214">Web service</text>
+  <text class="cls" x="280" y="230">only public entry point</text>
+  <path class="flow" d="M150 218 H208"/>
+  <text class="arr" x="179" y="210">HTTPS</text>
+
+  <!-- internal network and API service -->
+  <rect class="zone" x="425" y="150" width="190" height="136" rx="6"/>
+  <rect class="box" x="450" y="190" width="140" height="56" rx="4"/>
+  <text class="name" x="520" y="214">API service</text>
+  <text class="cls" x="520" y="230">holds the credentials</text>
+  <path class="flow" d="M350 218 H448"/>
+  <text class="arr" x="387" y="210">/api/*</text>
+  <text class="cls" x="520" y="274">internal address only</text>
+
+  <!-- backing services -->
+  <rect class="box" x="670" y="60" width="135" height="56" rx="4"/>
+  <text class="name" x="737" y="84">Database</text>
+  <text class="cls" x="737" y="100">SQL over TCP or HTTP</text>
+
+  <rect class="box" x="670" y="190" width="135" height="56" rx="4"/>
+  <text class="name" x="737" y="214">Email provider</text>
+  <text class="cls" x="737" y="230">SMTP or HTTP API</text>
+
+  <rect class="box" x="670" y="320" width="135" height="56" rx="4"/>
+  <text class="name" x="737" y="344">Object storage</text>
+  <text class="cls" x="737" y="360">private bucket</text>
+
+  <path class="flow" d="M590 218 H640 V88 H668"/>
+  <path class="flow" d="M590 218 H668"/>
+  <path class="flow" d="M590 218 H640 V348 H668"/>
+  <text class="arr end" x="634" y="82">queries</text>
+  <text class="arr end" x="634" y="342">signs URLs</text>
+
+  <!-- direct transfer with a signed URL -->
+  <path class="direct" d="M85 248 V405 H737 V378"/>
+  <text class="arr" x="411" y="397">direct upload and download with a signed URL (bucket CORS rule)</text>
+</svg>
