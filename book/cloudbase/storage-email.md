@@ -45,7 +45,7 @@ URLs neither needs nor uses those grants, and should leave them alone.
 ## Recipe: preparing a bucket
 
 !!! recipe "Checking the bucket's access settings"
-    1. Open the COS console (`https://console.cloud.tencent.com/cos`) →
+    1. Open the COS console (<https://console.cloud.tencent.com/cos>) →
        存储桶列表 (bucket list) → the bucket.
     2. 概览 (overview): 访问权限 (access) must read 私有读写 (private read and
        write), and the region is the one the application will be configured
@@ -123,8 +123,9 @@ rather than composing messages itself.
     1. Choose a subdomain for sending, such as `mail.example.com`. A domain
        that already carries business mailboxes must not be used as a sender
        domain, because its SPF and MX records would conflict [@sesdomain].
-    2. SES console → 邮件配置 (email settings) → 发信域名 (sender domains)
-       → 新建发信域名 (new sender domain): enter the subdomain and submit.
+    2. Open the SES console (<https://console.cloud.tencent.com/ses>) →
+       邮件配置 (email settings) → 发信域名 (sender domains) → 新建发信域名
+       (new sender domain): enter the subdomain and submit.
     3. The console lists the DNS records to publish: an MX record, an SPF TXT
        record, a DKIM TXT record and a DMARC TXT record (Chapter 7). Add them
        at the domain's DNS provider exactly as listed. On DNSPod they are

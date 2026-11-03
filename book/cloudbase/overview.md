@@ -147,11 +147,11 @@ turning an environment off.
 
 ## The console and the CLI
 
-The CloudBase console lives at `https://tcb.cloud.tencent.com/dev` and signs
+The CloudBase console lives at <https://tcb.cloud.tencent.com/dev> and signs
 in with a Tencent Cloud account, by default through a WeChat QR code
 [@createenv]. A direct load of that address sometimes stays blank until the
 application has booted once in the tab; opening it from the Tencent Cloud
-console (`https://console.cloud.tencent.com/tcb`, then the environment, then
+console (<https://console.cloud.tencent.com/tcb>, then the environment, then
 前往新版开发平台) always works. Once loaded, its pages are addressed by hash
 routes that can be bookmarked per environment.
 
