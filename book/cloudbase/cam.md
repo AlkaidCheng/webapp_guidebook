@@ -122,7 +122,7 @@ only if the application sends HEAD requests; signed URLs bind their method,
 so a URL signed for GET cannot be used for HEAD.
 
 !!! recipe "Creating the storage policy"
-    1. Open the CAM console (`https://console.cloud.tencent.com/cam`) →
+    1. Open the CAM console (<https://console.cloud.tencent.com/cam>) →
        策略 (policies) → 新建自定义策略 (new custom policy) → 按策略语法创建
        (create from policy syntax) → 空白模板 (blank template).
     2. Name it after its user, for example `MyAppStagingStorageAccess`, and

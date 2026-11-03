@@ -20,7 +20,7 @@ never change, and the package decides what the deployment costs
 (Section 9.3).
 
 !!! recipe "Creating an environment"
-    1. Sign in to the console at `https://tcb.cloud.tencent.com/dev`. A new
+    1. Sign in to the console at <https://tcb.cloud.tencent.com/dev>. A new
        account first accepts the service terms and authorises CloudBase's
        service role; it then receives a personal-package trial environment
        [@createenv]. An existing account opens the environment list and
