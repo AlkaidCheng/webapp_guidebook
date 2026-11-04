@@ -212,7 +212,10 @@ traffic share and instance count, and offers 实例详情 (instance details),
 
 **Scaling in place.** Instance counts can be changed without a new version:
 服务配置 → 编辑 (edit) → 实例副本数 → 保存 (save). This is how a service is
-"paused" (minimum 0, shown as 已暂停 once its instances are gone) and resumed.
+"paused" (minimum 0, shown as 已暂停 once its instances are gone). Raising the
+minimum again does not always resume it: on an internal-only service with no
+instance the new minimum was saved, but no instance had started eleven minutes
+later. Plan on a new version to bring such a service back.
 
 **Logs.** A version's 部署日志及详情 shows the build (checkout, image build
 and push) and the rollout, and for a version that failed to start it ends

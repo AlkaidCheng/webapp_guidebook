@@ -67,7 +67,7 @@ where `<appid>` is the account's APPID, the number that also ends the bucket
 name, and the part after the bucket is a key pattern in which `*` matches any
 sequence of characters [@camsyntax]. A resource that ends at `<bucket>/`
 names the bucket itself, which is what bucket-level actions such as reading
-the ACL require.
+the ACL require. Listing is the exception and needs `<bucket>/*`.
 
 !!! remark "APPID and UIN"
     The APPID identifies the account in resource names (and bucket names).
@@ -108,8 +108,8 @@ the prefix with the application's own.
         {
             "effect": "allow",
             "action": ["cos:GetBucket"],
-            "resource": ["qcs::cos:<region>:uid/<appid>:<bucket>/"],
-            "condition": {"string_like": {"cos:prefix": "workspaces/*/documents/*"}}
+            "resource": ["qcs::cos:<region>:uid/<appid>:<bucket>/*"],
+            "condition": {"string_like": {"cos:prefix": "workspaces%2F*%2Fdocuments%2F*"}}
         }
     ]
 }
@@ -117,7 +117,11 @@ the prefix with the application's own.
 
 Listing a bucket (`GetBucket`) is a bucket-level action, so the object
 pattern does not restrict it; the `cos:prefix` condition does, by admitting
-only listing requests whose prefix matches. Grant `cos:HeadObject` as well
+only listing requests whose prefix matches. Two details of that statement
+matter, and without either one every listing is refused with a 403 that gives
+no reason: the resource ends in `<bucket>/*`, and the condition value is
+URL-encoded, `%2F` for each `/`. In the value, `*` may stand at the end or
+between path parts, and it may match nothing. Grant `cos:HeadObject` as well
 only if the application sends HEAD requests; signed URLs bind their method,
 so a URL signed for GET cannot be used for HEAD.
 
@@ -257,8 +261,9 @@ only holder of.
     - One programmatic-only sub-user per purpose and per environment, each
       with one custom policy naming exactly its resources.
     - COS resources read `qcs::cos:<region>:uid/<appid>:<bucket>/<pattern>`;
-      bucket-level actions need the `<bucket>/` form, and listing is narrowed
-      with a `cos:prefix` condition.
+      bucket-level actions need the `<bucket>/` form, except listing, which
+      needs `<bucket>/*` and is narrowed with a URL-encoded `cos:prefix`
+      condition.
     - Probe a storage user from inside the container with its own keys:
       allowed, allowed, 404, allowed, 403.
     - Rotate by adding a key, deploying, verifying, disabling, then deleting.
