@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   pull_request:
+  schedule:
+    # Monthly, so that a new release of bookspine reaches the site and a breaking one
+    # shows early. A failed build leaves the site as it was.
+    - cron: "53 6 4 * *"
   workflow_dispatch:
 
 permissions:
@@ -24,7 +28,8 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python3 build.py
+      # The last commit's date, so that a scheduled build does not advance "revised".
+      - run: SOURCE_DATE_EPOCH=$(git log -1 --format=%ct) bookspine build
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:

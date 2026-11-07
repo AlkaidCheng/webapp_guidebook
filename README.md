@@ -18,12 +18,13 @@ platform.
 
 ## Building locally
 
-The site is generated from Markdown by `build.py`, which needs Python 3.10 or
-later and the packages in `requirements.txt`.
+The site is generated from Markdown by
+[bookspine](https://github.com/AlkaidCheng/bookspine), which needs Python 3.11 or
+later.
 
 ```bash
 pip install -r requirements.txt
-python3 build.py
+bookspine build
 python3 -m http.server --directory site 8000
 ```
 
@@ -51,7 +52,7 @@ never cited.
 Every section, subsection, figure, table and numbered box has a permalink:
 the `§` mark that appears beside it copies a URL that opens the book at that
 place. Section anchors are derived from the heading text, so renaming a
-heading changes its link. Figures and tables open enlarged when clicked.
+heading changes its link. Figures and tables open enlarged from their button.
 
 A new part is a new directory with an `index.md` opener and an entry in
 `book.yaml`. A new platform part follows the order of Part I, so that each of

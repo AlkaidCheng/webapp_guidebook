@@ -4,6 +4,9 @@ kicker: Notes and procedures
 author: Alkaid Cheng
 url: https://alkaidcheng.github.io/webapp_guidebook/
 repo: https://github.com/AlkaidCheng/webapp_guidebook
+repo_host: GitHub
+# A page's edit link is this prefix followed by its path under book/.
+edit_url: https://github.com/AlkaidCheng/webapp_guidebook/blob/main/book/
 
 # Parts are categories; chapters are the topics inside them. Chapters are
 # numbered continuously through the book, parts with Roman numerals.
